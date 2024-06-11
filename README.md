@@ -40,3 +40,14 @@ The score takes into account sentence lengths, the [readability metrix RIX](http
 
 > [!Important]
 > This package assumes the Swiss `ss` in your texts rather than the German German `ß`. You'll get somewhat worse scores, if your text contains `ß`. The difference shouldn't be substantial. Nonetheless, we want you to be aware. At the moment the score does **not** take into account other language properties that are essential for Einfache or Leichte Sprache like use of passive voice, subjunctives, complex structures in short sentences etc. Be also aware that the mapping to CEFR levels A1 to C2 should be considered as a pragmatic approach that gives an *indication* which seems to work well in practice. However, it is by no means an ‘official’ or safe measure.
+
+## What does the score mean?
+- Texts with **scores below 13 will be really hard to understand** (this is classic «Behördendeutsch» or legal text territory...). 
+- News, Wikipedia and many books have scores between 13 to 16.
+- Anything higher than 16: **You're on a good way.** 👍 Keep editing. **And validate with users!**
+
+![](understandability.png)
+
+
+
+
