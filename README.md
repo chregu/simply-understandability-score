@@ -20,10 +20,10 @@ It works on German text only - preferably Swiss High German.
 
 **Run with docker**
 
-- docker build -t simply-understandability-score .
-- docker run -p 8005:8005 simply-understandability-score
+- `docker build -t simply-understandability-score .`
+- `docker run -p 8005:8005 simply-understandability-score`
 
-** Call the API **
+**Call the API**
 
 ```bash
 curl --location 'localhost:8005/understandability' \
