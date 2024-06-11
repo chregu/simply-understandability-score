@@ -1,6 +1,6 @@
 # Simply simplify language understandability score only
 
-Inspired by https://github.com/machinelearningZH/simply-simplify-language
+Inspired by https://github.com/machinelearningZH/simply-simplify-language by the Statistisches Amt Kanton Zürich. Many thanks for it.
 
 I just wanted the understandability score, so I stripped everything else out and made a simple API for it.
 
