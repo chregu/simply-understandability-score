@@ -1,0 +1,6 @@
+spacy
+textdescriptives
+pyarrow
+fastparquet
+fastapi
+uvicorn
