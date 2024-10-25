@@ -1,10 +1,18 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
-
+from fastapi.middleware.cors import CORSMiddleware
 # Import your functions
 from understandability import get_understandability, get_cefr_level  # Replace `your_module` with the actual module name
 
 app = FastAPI()
+# Set up CORS middleware to allow requests from any origin
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all methods
+    allow_headers=["*"],  # Allows all headers
+)
 
 class TextRequest(BaseModel):
     text: str
