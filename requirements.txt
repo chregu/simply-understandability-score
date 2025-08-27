@@ -4,3 +4,4 @@ pyarrow
 fastparquet
 fastapi
 uvicorn
+textstat 
