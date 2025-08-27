@@ -1,15 +1,21 @@
 # Use the official Python image from the Docker Hub
-FROM python:3.9-slim
+FROM python:3.12-slim
 
 # Set the working directory in the container
 WORKDIR /app
+
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install -y --no-install-recommends git && \
+    rm -rf /var/lib/apt/lists/*
+
 
 # Copy the requirements file into the container
 COPY requirements.txt .
 
 # Install the required packages
 RUN pip install --no-cache-dir -r requirements.txt
-
+RUN pip install --no-cache-dir git+https://github.com/machinelearningZH/zix_understandability-index
 # Download and install the Spacy language model
 RUN python -m spacy download de_core_news_sm
 

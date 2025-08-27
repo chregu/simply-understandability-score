@@ -5,6 +5,8 @@ from spacy.language import Language
 import textdescriptives as td
 
 
+
+
 def get_word_scores():
     """Get commond word scores from the parquet file.
 
@@ -156,3 +158,4 @@ def get_understandability(text):
 
     features = extract_text_features(text)
     return calculate_understandability(features)
+

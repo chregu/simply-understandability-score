@@ -3,6 +3,7 @@ from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 # Import your functions
 from understandability import get_understandability, get_cefr_level  # Replace `your_module` with the actual module name
+from zix.understandability import get_zix, get_cefr
 
 app = FastAPI()
 # Set up CORS middleware to allow requests from any origin
@@ -21,6 +22,7 @@ class UnderstandabilityResponse(BaseModel):
     understandability: float
     cefr_level: str
 
+# old way extracted from original repo
 @app.post("/understandability", response_model=UnderstandabilityResponse)
 async def get_understandability_endpoint(request: TextRequest):
     try:
@@ -32,6 +34,20 @@ async def get_understandability_endpoint(request: TextRequest):
         )
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+# new way from ZIX project
+@app.post("/zix", response_model=UnderstandabilityResponse)
+async def get_understandability_endpoint(request: TextRequest):
+    try:
+        understandability_score = get_zix(request.text)
+        cefr_level = get_cefr(understandability_score)
+        return UnderstandabilityResponse(
+            understandability=understandability_score,
+            cefr_level=cefr_level
+        )
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
 
 if __name__ == "__main__":
     import uvicorn
