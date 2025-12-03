@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Response
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 # Import your functions
@@ -24,6 +24,15 @@ class UnderstandabilityResponse(BaseModel):
     cefr_level: str
     flesch: float
 
+# OPTIONS handlers for CORS preflight
+@app.options("/understandability")
+async def options_understandability(response: Response):
+    response.headers["Access-Control-Allow-Origin"] = "*"
+    response.headers["Access-Control-Allow-Methods"] = "*"
+    response.headers["Access-Control-Allow-Headers"] = "*"
+    response.headers["Access-Control-Allow-Credentials"] = "true"
+    return {}
+
 # old way extracted from original repo
 @app.post("/understandability", response_model=UnderstandabilityResponse)
 async def get_understandability_endpoint(request: TextRequest):
@@ -38,6 +47,14 @@ async def get_understandability_endpoint(request: TextRequest):
         )
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+@app.options("/zix")
+async def options_zix(response: Response):
+    response.headers["Access-Control-Allow-Origin"] = "*"
+    response.headers["Access-Control-Allow-Methods"] = "*"
+    response.headers["Access-Control-Allow-Headers"] = "*"
+    response.headers["Access-Control-Allow-Credentials"] = "true"
+    return {}
 
 # new way from ZIX project
 @app.post("/zix", response_model=UnderstandabilityResponse)
